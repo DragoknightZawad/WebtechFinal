@@ -79,30 +79,20 @@
         $city = htmlspecialchars($_POST["city"]);
     }
 		
-		if(!$hasError){
-			$users = simplexml_load_file("data.xml");
-			
-		$user = $users->addChild("user");
-			$user->addChild("username",$uname);
-			$user->addChild("fullname",$fname);
-			$user->addChild("password",$pass);
-			$user->addChild("email",$email);
-			$user->addChild("city",$city);
-			$user->addChild("gender",$gender);
-			$user->addChild("contact",$contact);
-			$user->addChild("type","user");
-			
-		    header("Location: login.php");
-			
-			$xml = new DOMDocument("1.0");
-			$xml->preserveWhiteSpace=false;
-			$xml->formatOutput= true;
-			$xml->loadXML($users->asXML());
-			
-			
-			$file = fopen("data.xml","w");
-			fwrite($file,$xml->saveXML());
+	if(!$hasError){
+		$username="root";
+		$servername="localhost";
+		$password="";
+		$db_name="finalwebtech";
+		$conn=mysqli_connect($servername,$username,$password,$db_name);
+		if(!$conn){
+			die("Connection failed: ".mysqli_connect_error());
+		}
+		$p=md5($p);
+		echo $p;
+		mysqli_query($conn,"INSERT INTO users VALUES('1','Fahim','123','user')");
 		}
 	}
+	
 	
 ?>

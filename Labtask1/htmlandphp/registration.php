@@ -1,8 +1,8 @@
-<?php include_once "php/validation_registration.php" ;?>
+<?php include_once "validation_registration.php"?>
 <html>
 	<head></head>
 	<body>
-		<?php include_once "header.php";?>
+		
 		<fieldset>
 		* Fields are required
 			<form action="" method="post">
