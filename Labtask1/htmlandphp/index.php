@@ -1,33 +1,37 @@
 <?php
-	/*$file = fopen("data.txt","r");
-	$i=1;
-    while(!feof($file)){
-		$line = fgets($file);
-		$info = explode(":",$line);
-		echo "username: $info[0] <br> ";
-		echo "password: $info[1] <br> ";
-		echo "type: $info[2] <br> ";
+	$con = mysqli_connect("localhost","root","","finalwebtech");
 
-	}*/
-	$xml=simplexml_load_file("data.xml");
-	$users = $xml->user;
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  exit();
+}
 	$flag=false;
-	if( (isset($_POST['password']) )&&(isset($_POST['username']))){
-			foreach($users as $user){
-		if( $user->username == $_POST['username'] && $user->password == $_POST['password']){
+$pass = md5($_POST['password']);
+
+$query = 'select username, password from sample where username="' .$_POST['username'] .'" and password="' .$pass .'";';
+
+
+$ans = mysqli_query($con, $query);
+if (mysqli_num_rows($ans)>0){
 	$flag=true;
-	}
-}
+session_start();
+$_SESSION["logged_in"] = true;
+$_SESSION["username"] = $_POST['username'];
 }
 
-	if($flag){
-		header("Location: dashboard.php");
+
+if($flag){
+
+		header("Location:dashboard.php");
 	}else{
 		if( (isset($_POST['password']) )&&(isset($_POST['username']))){
 		echo "Invalid credentiails";
 	}
 	else{ echo "Provide credentials.";}
 	}
+
+
 
 
 ?>

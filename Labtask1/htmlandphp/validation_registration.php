@@ -91,7 +91,7 @@
 		$p="d41d8cd98f00b204e9800998ecf8427e";
 		$p=md5($p);
 		echo $p;
-		//mysqli_query($conn,"INSERT INTO users VALUES('1','Fahim','123','user')");
+		//mysqli_query($conn,"INSERT INTO users VALUES('null','Fahim2','123','user')");
 		$query = "Select * FROM users";
 		$results = mysqli_query($conn,$query);
 		if(mysqli_num_rows($results)>0)

@@ -1,4 +1,4 @@
-<?php include "php/index.php" ;?>
+<?php include "index.php" ;?>
 <html>
     <head>
         <title>Title</title>
