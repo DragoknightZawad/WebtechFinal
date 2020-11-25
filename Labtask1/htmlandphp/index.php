@@ -7,9 +7,12 @@ if (mysqli_connect_errno()) {
   exit();
 }
 	$flag=false;
+
+
+  	if( (isset($_POST['password']) )&&(isset($_POST['username']))){
 $pass = md5($_POST['password']);
 
-$query = 'select username, password from sample where username="' .$_POST['username'] .'" and password="' .$pass .'";';
+$query = 'select username, password from users where username="' .$_POST['username'] .'" and password="' .$_POST['password'] .'";';
 
 
 $ans = mysqli_query($con, $query);
@@ -19,9 +22,10 @@ session_start();
 $_SESSION["logged_in"] = true;
 $_SESSION["username"] = $_POST['username'];
 }
+}
 
 
-if($flag){
+if($flag==true){
 
 		header("Location:dashboard.php");
 	}else{
@@ -30,7 +34,6 @@ if($flag){
 	}
 	else{ echo "Provide credentials.";}
 	}
-
 
 
 
