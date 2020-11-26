@@ -10,7 +10,7 @@ if (mysqli_connect_errno()) {
 
 
   	if( (isset($_POST['password']) )&&(isset($_POST['username']))){
-$pass = md5($_POST['password']);
+
 
 $query = 'select username, password from users where username="' .$_POST['username'] .'" and password="' .$_POST['password'] .'";';
 
