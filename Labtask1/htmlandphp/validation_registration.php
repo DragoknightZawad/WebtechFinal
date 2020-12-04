@@ -80,7 +80,7 @@
     }
 		
 	if(!$hasError){
-		$username="root";
+	$username="root";
 		$servername="localhost";
 		$password="";
 		$db_name="finalwebtech";
@@ -88,17 +88,14 @@
 		if(!$conn){
 			die("Connection failed: ".mysqli_connect_error());
 		}
-		$p="d41d8cd98f00b204e9800998ecf8427e";
-		$p=md5($p);
-		echo $p;
+		
 		if ($stmt = mysqli_prepare($conn, $query = "INSERT INTO users (username, password) VALUES (?,?)")) {
 
 			mysqli_stmt_bind_param($stmt, 'si', $uname,$pass);
 
-			mysqli_stmt_execute($stmt) or die('Error when inserting:'.mysqli_error($connection));
+			mysqli_stmt_execute($stmt) or die('Error when inserting:'.mysqli_error($conn));
 		}else{
 		die('Error when preparing '.mysqli_error($conn));
-		}
 	}
 		
 		
@@ -130,6 +127,7 @@
 		echo"</table>";
 		
 		}
+	}
 	}
 	
 	
